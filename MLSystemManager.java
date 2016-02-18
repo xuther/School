@@ -17,7 +17,7 @@ public class MLSystemManager {
 	public SupervisedLearner getLearner(String model, Random rand) throws Exception
 	{
 		//size, currently set for the Iris
-		int[] netSize = {2,1};
+		int[] netSize = {22,11};
 		if (model.equals("baseline")) return new BaselineLearner();
 		// else if (model.equals("perceptron")) return new Perceptron(rand);
 		else if (model.equals("mlp")) return new MLP(netSize);

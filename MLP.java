@@ -2,13 +2,16 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MLP extends SupervisedLearner{
 	
 	private ArrayList<MLPLayer> layers;
 	private double LEARNINGRATE = .1;
+	private int FEATURENUM = 11;
 	private double VALIDATIONPERCENT = .2;
+	HashMap<Double, double[]> translateLables;
 	
 	public MLP(int LayersNodes[]) {
 		java.util.Random rand = new java.util.Random();
@@ -20,7 +23,7 @@ public class MLP extends SupervisedLearner{
 			
 			int prevLayerSize;
 			if (i == 0)
-				prevLayerSize = LayersNodes[i];
+				prevLayerSize = FEATURENUM;
 			else 
 				prevLayerSize = LayersNodes[i-1];
 			
@@ -58,8 +61,9 @@ public class MLP extends SupervisedLearner{
 					double greekThing = layers.get(i).getNode(j).calculateGreekSymbolThingOutput(targets[j]);
 					double[] weightChanges = layers.get(i).getNode(j).calculateWeightChanges(LEARNINGRATE, greekThing);
 					layers.get(i).getNode(j).changeWeights(weightChanges);
-					toReturn = layers.get(i).getNode(j).getMSE(targets[j]);
+					toReturn += layers.get(i).getNode(j).getMSE(targets[j]);
 				}
+				toReturn = toReturn/layers.get(i).getNodes().size();
 			}
 			else {
 				for (int j = 0; j < layers.get(i).getNodes().size(); j++){
@@ -130,7 +134,7 @@ public class MLP extends SupervisedLearner{
 			PrintWriter writer = new PrintWriter("data.txt", "UTF-8");
 			for(int i = 0; i< toWrite.size(); i++)
 			{
-				writer.println(toWrite.get(i)[0] + ", " + toWrite.get(i)[1]); 
+				writer.println(toWrite.get(i)[0] + ", " + toWrite.get(i)[1] + ", " + toWrite.get(i)[2]); 
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
@@ -148,6 +152,16 @@ public class MLP extends SupervisedLearner{
 		int size = features.m_data.size();
 		int validationSize = (int) Math.round(size * VALIDATIONPERCENT);
 		
+		translateLables = new HashMap<Double, double[]>();
+		int optionCount= labels.m_str_to_enum.get(0).size();
+		
+		for (int i = 0; i < optionCount; i ++)
+		{
+			double[] value = new double[optionCount];
+			value[i] = 1;
+			translateLables.put((double)i, value);
+		}
+		
 		Matrix validationSet = new Matrix(features, size-validationSize, 0, validationSize, features.cols());
 		Matrix validationLabels = new Matrix(labels, size-validationSize, 0, validationSize, labels.cols());
 		
@@ -162,30 +176,47 @@ public class MLP extends SupervisedLearner{
 		ArrayList<double[]> MSE = new ArrayList<double[]>();
 		
 		//Our window for BSSF is 50 and we run at least 500 times. 
-		while (countSansUpdate < 50 && count < 500)
+		while (countSansUpdate < 10 && count < 5000)
 		{
 			error = 0;
 			for (int i = 0; i < TrainingSet.rows(); i++) {
 				double[] outputs = evalutate(TrainingSet.m_data.get(i));
-				error += updateWeights(outputs, TrainingLabels.m_data.get(i));
+				
+				//We need to translate between their labels to ours;	
+				double value = TrainingLabels.m_data.get(i)[0];
+				double[] target = translateLables.get(value);
+				error += updateWeights(outputs, target);
 			}
 			double MSETrain = error/TrainingSet.rows();
-			double[] realoutput = new double[1];
+			//We have that many output nodes. 
 			
 			error = 0;
+			int VScorrect = 0;
 			for (int i = 0; i < validationSet.rows(); i++) {
-				predict(validationSet.m_data.get(i), realoutput);
+				double[] realoutput = predictMSE(validationSet.m_data.get(i));
+				
+				//This is for metrics only.
+				double result = evaluateWinner(realoutput);
+				double expected = validationLabels.m_data.get(i)[0];
+				
+				if (result == expected)
+					VScorrect++;
+				
 				double littleError = 0;
 				
-				for (int j = 0; j < validationLabels.cols(); j++){
-					littleError+= Math.pow(realoutput[j]-validationLabels.m_data.get(i)[j], 2);
+				double[] ourLabel = translateLables.get(expected);
+				
+				for (int j = 0; j < ourLabel.length; j++){
+					//we need to translate from ValidationLabels (1,2,3) to our labels (001,010,100)
+					littleError+= Math.pow(realoutput[j]-ourLabel[j], 2);
 				}
 				error += littleError/validationLabels.cols();
 			}
 			double MSEValidation = error/validationSet.rows();
+			double accuracry = (double)VScorrect/validationSet.rows();
 			
-			System.out.println(MSETrain + " , " + MSEValidation);
-			double[] mse = {MSETrain, MSEValidation};
+			System.out.println(MSETrain + " , " + MSEValidation + " , " + accuracry);
+			double[] mse = {MSETrain, MSEValidation, accuracry};
 			MSE.add(mse);
 			
 			count++;
@@ -203,12 +234,44 @@ public class MLP extends SupervisedLearner{
 		
 		
 	}
+	
+	public int evaluateWinner(double[] outputs)	{
+		int curWinner = -1;
+		double curBest = Double.NEGATIVE_INFINITY;
+		for(int i = 0; i < outputs.length; i++)
+		{
+			if (outputs[i] > curBest){
+				curWinner = i; 
+				curBest = outputs[i];
+			}
+		}
+		return curWinner;
+	}
 
 	@Override
 	public void predict(double[] features, double[] labels) throws Exception {
 		double[] outputs = evalutate(features);
+		
+		//round the outputs to the nearest value.
+		//for our purposes (where only one can fire at a time) we take the one with the largest value and 
+		//have it 'fire'
+		int curWinner = -1;
+		double curBest = Double.NEGATIVE_INFINITY;
+		for(int i = 0; i < outputs.length; i++)
+		{
+			if (outputs[i] > curBest){
+				curWinner = i; 
+				curBest = outputs[i];
+			}
+		}
+		
 		for(int i = 0; i < labels.length; i++)
-			labels[i] = outputs[i];
+			labels[i] = curWinner;
+	}
+	
+	public double[] predictMSE(double[] features) throws Exception {
+		double[] outputs = evalutate(features);
+		return outputs;
 	}
 }
 
