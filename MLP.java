@@ -8,9 +8,10 @@ import java.util.HashMap;
 public class MLP extends SupervisedLearner{
 	
 	private ArrayList<MLPLayer> layers;
-	private double LEARNINGRATE = .1;
+	private double LEARNINGRATE = .05;
 	private int FEATURENUM = 11;
 	private double VALIDATIONPERCENT = .2;
+	private int MAXITERATION = 50000;
 	HashMap<Double, double[]> translateLables;
 	
 	public MLP(int LayersNodes[]) {
@@ -28,6 +29,20 @@ public class MLP extends SupervisedLearner{
 				prevLayerSize = LayersNodes[i-1];
 			
 			layers.add(new MLPLayer(prevLayerSize, LayersNodes[i], rand));
+		}
+	}
+	
+	public void setBestWeights()
+	{
+		for(MLPLayer l: layers){
+			l.setBest();
+		}
+	}
+	
+	public void restoreBestWeights()
+	{
+		for(MLPLayer l: layers){
+			l.restoreBest();
 		}
 	}
 	
@@ -83,51 +98,6 @@ public class MLP extends SupervisedLearner{
 		}
 		return toReturn;
 	}
-	
-	public static void main(String[] args){
-		int[] nodesLayers = {2,1};
-		
-		//Stuff for XOR.
-		double[] inputs1 = {0,0};
-		double[] inputs2 = {0,1};
-		double[] inputs3 = {1,0};
-		double[] inputs4 = {1,1};
-		
-		double[] outputs1 = {0};
-		double[] outputs2 = {1};
-		double[] outputs3 = {1};
-		double[] outputs4 = {0};
-		
-		
-		ArrayList<double[]> ExpectedOutputs = new ArrayList<double[]>();
-		ExpectedOutputs.add(outputs1);
-		ExpectedOutputs.add(outputs2);
-		ExpectedOutputs.add(outputs3);
-		ExpectedOutputs.add(outputs4);
-		
-		ArrayList<double[]> Inputs = new ArrayList<double[]>();
-		Inputs.add(inputs1);
-		Inputs.add(inputs2);
-		Inputs.add(inputs3);
-		Inputs.add(inputs4);
-		
-		ArrayList<double[]> actualOutputs = new ArrayList<double[]>();
-		
-		int[] layers = {2,1};
-		MLP perceptron = new MLP(layers);
-		
-		double error;
-		for (int j = 0; j < 5000; j++) {
-			error = 0;
-			for (int i = 0; i < Inputs.size(); i++) {
-				double[] outputs = perceptron.evalutate(Inputs.get(i));
-				error += perceptron.updateWeights(outputs, ExpectedOutputs.get(i));
-				actualOutputs.add(outputs);
-			}
-			System.out.println(error/4.0);
-		}
-
-	}
 		
 	public void writeToFile(ArrayList<double[]> toWrite){
 		try {
@@ -171,12 +141,13 @@ public class MLP extends SupervisedLearner{
 		boolean done = false;
 		int count = 0;
 		int countSansUpdate = 0;
+		double MSEValidation = 0;
 		double error;
 		double BWSF = Double.POSITIVE_INFINITY;
 		ArrayList<double[]> MSE = new ArrayList<double[]>();
 		
-		//Our window for BSSF is 50 and we run at least 500 times. 
-		while (countSansUpdate < 10 && count < 5000)
+		//Our window for BSSF is 50 and we run at Most MAXITERATION
+		while ((countSansUpdate < 10 && count < MAXITERATION))
 		{
 			error = 0;
 			for (int i = 0; i < TrainingSet.rows(); i++) {
@@ -212,15 +183,18 @@ public class MLP extends SupervisedLearner{
 				}
 				error += littleError/validationLabels.cols();
 			}
-			double MSEValidation = error/validationSet.rows();
+			MSEValidation = error/validationSet.rows();
 			double accuracry = (double)VScorrect/validationSet.rows();
 			
-			System.out.println(MSETrain + " , " + MSEValidation + " , " + accuracry);
+			System.out.println(count + "," + MSETrain + ", " + MSEValidation + ", " + accuracry);
 			double[] mse = {MSETrain, MSEValidation, accuracry};
 			MSE.add(mse);
 			
 			count++;
+			
+			//save our weights
 			if (MSEValidation < BWSF){
+				setBestWeights();
 				BWSF = MSEValidation;
 				countSansUpdate = 0;
 			}
@@ -228,6 +202,11 @@ public class MLP extends SupervisedLearner{
 				countSansUpdate++;	
 			
 		}
+		
+		//Restore the best weights
+		if(countSansUpdate > 0)
+			restoreBestWeights();
+		System.out.println("MSE Validation Best: " + MSEValidation);
 		
 		writeToFile(MSE);
 		System.out.println("Epochs: " + count);

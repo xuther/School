@@ -25,6 +25,21 @@ public class MLPLayer {
 		}
 	}
 	
+	//Save the best weights
+	public void setBest()
+	{
+		for (MLPNode n: nodes){
+			n.setBestWeights();
+		}
+	}
+	
+	public void restoreBest()
+	{
+		for (MLPNode n: nodes){
+			n.restoreBestWeights();
+		}
+	}
+	
 	//We assume that the bias is the first item in the array.
 	public static double[] removeBias(double[] inputs) {
 		assert(inputs.length >= 2);

@@ -17,7 +17,7 @@ public class MLSystemManager {
 	public SupervisedLearner getLearner(String model, Random rand) throws Exception
 	{
 		//size, currently set for the Iris
-		int[] netSize = {22,11};
+		int[] netSize = {64,64,64,64,64,64,64,64,11};
 		if (model.equals("baseline")) return new BaselineLearner();
 		// else if (model.equals("perceptron")) return new Perceptron(rand);
 		else if (model.equals("mlp")) return new MLP(netSize);
@@ -112,6 +112,9 @@ public class MLSystemManager {
 		}
 		else if (evalMethod.equals("random"))
 		{
+			for (int i = 0; i < 5; i++){
+			learner = getLearner(learnerName, rand);
+				
 			System.out.println("Calculating accuracy on a random hold-out set...");
 			double trainPercent = Double.parseDouble(evalParameter);
 			if (trainPercent < 0 || trainPercent > 1)
@@ -137,6 +140,12 @@ public class MLSystemManager {
 				System.out.println("\nConfusion matrix: (Row=target value, Col=predicted value)");
 				confusion.print();
 				System.out.println("\n");
+			}
+			System.out.println("--------------------------------------");
+			System.out.println("--------------------------------------");
+			System.out.println("--------------------------------------");
+			System.out.println("--------------------------------------");
+			
 			}
 		}
 		else if (evalMethod.equals("cross"))

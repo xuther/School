@@ -8,6 +8,7 @@ public class MLPNode {
 	private double derivative;
 	private double[] lastInputs;
 	private double[] lastWeightChanges;
+	private double[] bestWeights;
 	
 	
 	private double MOMENTUM = .5;
@@ -18,6 +19,15 @@ public class MLPNode {
 
 	public void setIncomingWeights(double[] incomingWeights) {
 		this.incomingWeights = incomingWeights;
+	}
+	
+	public void setBestWeights()
+	{
+		this.bestWeights = incomingWeights.clone();
+	}
+	
+	public void restoreBestWeights() {
+		this.incomingWeights = bestWeights.clone();
 	}
 	
 	public MLPNode(int connections, java.util.Random rand) {
