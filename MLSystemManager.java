@@ -21,7 +21,7 @@ public class MLSystemManager {
 		if (model.equals("baseline")) return new BaselineLearner();
 		// else if (model.equals("perceptron")) return new Perceptron(rand);
 		else if (model.equals("mlp")) return new MLP(netSize);
-		// else if (model.equals("decisiontree")) return new DecisionTree();
+		else if (model.equals("dt")) return new DecisionTree();
 		// else if (model.equals("knn")) return new InstanceBasedLearner();
 		else throw new Exception("Unrecognized model: " + model);
 	}
