@@ -172,9 +172,10 @@ public class MLSystemManager {
 					double startTime = System.currentTimeMillis();
 					learner.train(trainFeatures, trainLabels);
 					elapsedTime += System.currentTimeMillis() - startTime;
+					double trainAccuracy = learner.measureAccuracy(trainFeatures, trainLabels, null);
 					double accuracy = learner.measureAccuracy(testFeatures, testLabels, null);
 					sumAccuracy += accuracy;
-					System.out.println("Rep=" + j + ", Fold=" + i + ", Accuracy=" + accuracy);
+					System.out.println("Rep=" + j + ", Fold=" + i + ", Train Accuracy=" +trainAccuracy+ ", TestAccuracy=" + accuracy);
 				}
 			}
 			elapsedTime /= (reps * folds);

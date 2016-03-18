@@ -6,12 +6,14 @@ public class DecisionTree extends SupervisedLearner {
 	/**
 	 * Set this for pruning to happen. 
 	 */
-	boolean prune = true;
+	public boolean prune = false;
 	/**
 	 * Percent of data used for validation set. 
 	 */
 	double validationPercent = .25;
 	
+	
+	boolean print = false;
 	
 	Matrix validateFeatures;
 	Matrix validateLabels;
@@ -38,7 +40,7 @@ public class DecisionTree extends SupervisedLearner {
 			validateLabels = new Matrix(labels, 0, 0, trainSize, 1);
 			
 			
-			head = new DTNode(trainFeatures, trainLabels, columns, null);
+			head = new DTNode(trainFeatures, trainLabels, columns, null,null);
 			
 			head.split();
 			
@@ -48,8 +50,14 @@ public class DecisionTree extends SupervisedLearner {
 			
 		} else
 		{
-			head  = new DTNode(features, labels, columns,null);
+			head  = new DTNode(features, labels, columns,null,null);
 			head.split();
+			ArrayList<DTNode> treeCount = new ArrayList<DTNode>();
+			
+			treeCount.add(head);
+			head.addAllNodes(treeCount);
+			System.out.println("Nodes=" + treeCount.size());
+			System.out.println("Depth=" + head.findDepth(-1));
 		}
 	}
 	
@@ -74,10 +82,13 @@ public class DecisionTree extends SupervisedLearner {
 		
 		treeCount.add(head);
 		head.addAllNodes(treeCount);
-		
-		System.out.println("Number of Nodes in tree before prune: " + treeCount.size());
-		System.out.println("Tree: ");
-		printTree();
+		if (!print) {
+			System.out.println("Nodes=" + treeCount.size());
+		}
+			System.out.println("Number of Nodes in tree before prune: " + treeCount.size());
+			System.out.println("Depth before prune =" + head.findDepth(-1));
+			
+			printTree();
 		try 
 		{
 			do 
@@ -124,14 +135,15 @@ public class DecisionTree extends SupervisedLearner {
 		treeCount.clear();
 		treeCount.add(head);
 		head.addAllNodes(treeCount);
-		
-		System.out.println("Number of Nodes in tree after prune: " + treeCount.size());
-		System.out.println("Tree: ");
-		printTree();
-		
+			System.out.println("Number of Nodes in tree after prune: " + treeCount.size());
+			System.out.println("Depth after prune =" + head.findDepth(-1));
+			printTree();
 	}
 	
 	public void printTree(){
+		if (!print)
+			return;
+		System.out.println("Tree: ");
 		ArrayList<DTNode> treeNodes = new ArrayList<DTNode>();
 		String curLine = "";
 		treeNodes.add(head);
@@ -149,8 +161,7 @@ public class DecisionTree extends SupervisedLearner {
 				curLine = curNode.id + " --" +curNode.featureSplitOn + "--> ";
 				for (DTNode d: curNode.children.values())
 				{
-					
-					curLine += d.id + " , ";
+					curLine += d.splitValue + ":" + d.id + " , ";	
 				}
 			}
 			
