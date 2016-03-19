@@ -1,11 +1,9 @@
-// ----------------------------------------------------------------
+package Main.SupervisedLearners;// ----------------------------------------------------------------
 // The contents of this file are distributed under the CC0 license.
 // See http://creativecommons.org/publicdomain/zero/1.0/
 // ----------------------------------------------------------------
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
+import Main.Matrix;
 
 public abstract class SupervisedLearner {
 

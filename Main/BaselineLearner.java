@@ -1,9 +1,9 @@
-// ----------------------------------------------------------------
+package Main;// ----------------------------------------------------------------
 // The contents of this file are distributed under the CC0 license.
 // See http://creativecommons.org/publicdomain/zero/1.0/
 // ----------------------------------------------------------------
 
-import java.util.ArrayList;
+import Main.SupervisedLearners.SupervisedLearner;
 
 /**
  * For nominal labels, this model simply returns the majority class. For

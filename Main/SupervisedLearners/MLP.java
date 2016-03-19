@@ -1,11 +1,13 @@
+package Main.SupervisedLearners;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import Main.Matrix;
 
-
-public class MLP extends SupervisedLearner{
+public class MLP extends SupervisedLearner {
 	
 	private ArrayList<MLPLayer> layers;
 	private double LEARNINGRATE = .05;
@@ -101,7 +103,7 @@ public class MLP extends SupervisedLearner{
 		
 	public void writeToFile(ArrayList<double[]> toWrite){
 		try {
-			PrintWriter writer = new PrintWriter("data.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("Main/data.txt", "UTF-8");
 			for(int i = 0; i< toWrite.size(); i++)
 			{
 				writer.println(toWrite.get(i)[0] + ", " + toWrite.get(i)[1] + ", " + toWrite.get(i)[2]); 

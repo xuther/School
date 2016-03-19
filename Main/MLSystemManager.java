@@ -1,16 +1,19 @@
-// ----------------------------------------------------------------
+package Main;// ----------------------------------------------------------------
 // The contents of this file are distributed under the CC0 license.
 // See http://creativecommons.org/publicdomain/zero/1.0/
 // ----------------------------------------------------------------
 
 
-import java.util.ArrayList;
+import Main.SupervisedLearners.DecisionTree;
+import Main.SupervisedLearners.KNN.KNN;
+import Main.SupervisedLearners.MLP;
+import Main.SupervisedLearners.SupervisedLearner;
+
 import java.util.Random;
-import java.io.File;
 
 
 public class MLSystemManager {
-	
+
 	/**
 	 *  When you make a new learning algorithm, you should add a line for it to this method.
 	 */
@@ -22,7 +25,7 @@ public class MLSystemManager {
 		// else if (model.equals("perceptron")) return new Perceptron(rand);
 		else if (model.equals("mlp")) return new MLP(netSize);
 		else if (model.equals("dt")) return new DecisionTree();
-		// else if (model.equals("knn")) return new InstanceBasedLearner();
+		else if (model.equals("knn")) return new KNN(true, 9);
 		else throw new Exception("Unrecognized model: " + model);
 	}
 
@@ -114,7 +117,7 @@ public class MLSystemManager {
 		{
 			for (int i = 0; i < 5; i++){
 			learner = getLearner(learnerName, rand);
-				
+
 			System.out.println("Calculating accuracy on a random hold-out set...");
 			double trainPercent = Double.parseDouble(evalParameter);
 			if (trainPercent < 0 || trainPercent > 1)
@@ -145,7 +148,7 @@ public class MLSystemManager {
 			System.out.println("--------------------------------------");
 			System.out.println("--------------------------------------");
 			System.out.println("--------------------------------------");
-			
+
 			}
 		}
 		else if (evalMethod.equals("cross"))
@@ -188,7 +191,7 @@ public class MLSystemManager {
 	 * Class for parsing out the command line arguments
 	 */
 	private class ArgParser {
-	
+
 		String arff;
 		String learner;
 		String evaluation;
@@ -199,7 +202,7 @@ public class MLSystemManager {
 		//You can add more options for specific learning models if you wish
 		public ArgParser(String[] argv) {
 			try{
-	
+
 			 	for (int i = 0; i < argv.length; i++) {
 
 			 		if (argv[i].equals("-V"))
@@ -249,45 +252,45 @@ public class MLSystemManager {
 							System.exit(0);
 						}
 			  	}
-		 
+
 				}
 				catch (Exception e) {
 					System.out.println("Usage:");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E [evaluationMethod] {[extraParamters]} [OPTIONS]\n");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E [evaluationMethod] {[extraParamters]} [OPTIONS]\n");
 					System.out.println("OPTIONS:");
 					System.out.println("-V Print the confusion matrix and learner accuracy on individual class values\n");
-					
+
 					System.out.println("Possible evaluation methods are:");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E training");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E static [testARFF_File]");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E random [%_ForTraining]");
-				  	System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E cross [numOfFolds]\n");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E training");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E static [testARFF_File]");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E random [%_ForTraining]");
+				  	System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E cross [numOfFolds]\n");
 					System.exit(0);
 				}
-				
+
 				if (arff == null || learner == null || evaluation == null)
 				{
 					System.out.println("Usage:");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E [evaluationMethod] {[extraParamters]} [OPTIONS]\n");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E [evaluationMethod] {[extraParamters]} [OPTIONS]\n");
 					System.out.println("OPTIONS:");
 					System.out.println("-V Print the confusion matrix and learner accuracy on individual class values");
 					System.out.println("-N Use normalized data");
 					System.out.println();
 					System.out.println("Possible evaluation methods are:");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E training");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E static [testARFF_File]");
-					System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E random [%_ForTraining]");
-				  	System.out.println("MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E cross [numOfFolds]\n");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E training");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E static [testARFF_File]");
+					System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E random [%_ForTraining]");
+				  	System.out.println("Main.MLSystemManager -L [learningAlgorithm] -A [ARFF_File] -E cross [numOfFolds]\n");
 					System.exit(0);
 				}
 			}
-	 
+
 		//The getter methods
-		public String getARFF(){ return arff; }	
-		public String getLearner(){ return learner; }	 
-		public String getEvaluation(){ return evaluation; }	
+		public String getARFF(){ return arff; }
+		public String getLearner(){ return learner; }
+		public String getEvaluation(){ return evaluation; }
 		public String getEvalParameter() { return evalExtra; }
-		public boolean getVerbose() { return verbose; } 
+		public boolean getVerbose() { return verbose; }
 		public boolean getNormalize() { return normalize; }
 	}
 

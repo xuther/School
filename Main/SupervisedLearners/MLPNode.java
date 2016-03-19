@@ -1,3 +1,6 @@
+package Main.SupervisedLearners;
+
+import Main.Matrix;
 
 public class MLPNode {
 	

@@ -1,0 +1,9 @@
+@RELATION testtest
+
+@Attribute x real
+@Attribute y real
+@Attribute class {a,b}
+
+@Data
+2,2,a
+3,2,b

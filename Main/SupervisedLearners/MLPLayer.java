@@ -1,5 +1,7 @@
-import java.util.ArrayList;
+package Main.SupervisedLearners;
 
+import java.util.ArrayList;
+import Main.Matrix;
 
 public class MLPLayer {
 	

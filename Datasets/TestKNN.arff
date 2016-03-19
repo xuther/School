@@ -1,0 +1,14 @@
+@RELATION test
+
+@Attribute x real
+@Attribute y real
+@Attribute class {a,b}
+
+@Data
+1,1,a
+1,2,a
+1,3,a
+4,1,b
+4,2,b
+4,3,b
+4,3.5,b
