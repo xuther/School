@@ -25,7 +25,7 @@ public class MLSystemManager {
 		// else if (model.equals("perceptron")) return new Perceptron(rand);
 		else if (model.equals("mlp")) return new MLP(netSize);
 		else if (model.equals("dt")) return new DecisionTree();
-		else if (model.equals("knn")) return new KNN(true, 9);
+		else if (model.equals("knn")) return new KNN(false, true, 21);
 		else throw new Exception("Unrecognized model: " + model);
 	}
 
@@ -86,36 +86,44 @@ public class MLSystemManager {
 		}
 		else if (evalMethod.equals("static"))
 		{
-			Matrix testData = new Matrix();
-			testData.loadArff(evalParameter);
-			if (normalize)
-				testData.normalize(); // BUG! This may normalize differently from the training data. It should use the same ranges for normalization!
+			for (int i = 1; i <=15; i=i+2) {
 
-			System.out.println("Calculating accuracy on separate test set...");
-			System.out.println("Test set name: " + evalParameter);
-			System.out.println("Number of test instances: " + testData.rows());
-			Matrix features = new Matrix(data, 0, 0, data.rows(), data.cols() - 1);
-			Matrix labels = new Matrix(data, 0, data.cols() - 1, data.rows(), 1);
-			double startTime = System.currentTimeMillis();
-			learner.train(features, labels);
-			double elapsedTime = System.currentTimeMillis() - startTime;
-			System.out.println("Time to train (in seconds): " + elapsedTime / 1000.0);
-			double trainAccuracy = learner.measureAccuracy(features, labels, null);
-			System.out.println("Training set accuracy: " + trainAccuracy);
-			Matrix testFeatures = new Matrix(testData, 0, 0, testData.rows(), testData.cols() - 1);
-			Matrix testLabels = new Matrix(testData, 0, testData.cols() - 1, testData.rows(), 1);
-			Matrix confusion = new Matrix();
-			double testAccuracy = learner.measureAccuracy(testFeatures, testLabels, confusion);
-			System.out.println("Test set accuracy: " + testAccuracy);
-			if(printConfusionMatrix) {
-				System.out.println("\nConfusion matrix: (Row=target value, Col=predicted value)");
-				confusion.print();
-				System.out.println("\n");
+				KNN k = (KNN)learner;
+				k.setK(i);
+				System.out.println("-------------------- K = " + k.getk()+ " --------------------");
+
+
+				Matrix testData = new Matrix();
+				testData.loadArff(evalParameter);
+				if (normalize)
+					testData.normalize(); // BUG! This may normalize differently from the training data. It should use the same ranges for normalization!
+
+				System.out.println("Calculating accuracy on separate test set...");
+				System.out.println("Test set name: " + evalParameter);
+				System.out.println("Number of test instances: " + testData.rows());
+				Matrix features = new Matrix(data, 0, 0, data.rows(), data.cols() - 1);
+				Matrix labels = new Matrix(data, 0, data.cols() - 1, data.rows(), 1);
+				double startTime = System.currentTimeMillis();
+				learner.train(features, labels);
+				double elapsedTime = System.currentTimeMillis() - startTime;
+				System.out.println("Time to train (in seconds): " + elapsedTime / 1000.0);
+				double trainAccuracy = learner.measureAccuracy(features, labels, null);
+				System.out.println("Training set accuracy: " + trainAccuracy);
+				Matrix testFeatures = new Matrix(testData, 0, 0, testData.rows(), testData.cols() - 1);
+				Matrix testLabels = new Matrix(testData, 0, testData.cols() - 1, testData.rows(), 1);
+				Matrix confusion = new Matrix();
+				double testAccuracy = learner.measureAccuracy(testFeatures, testLabels, confusion);
+				System.out.println("Test set accuracy: " + testAccuracy);
+				if (printConfusionMatrix) {
+					System.out.println("\nConfusion matrix: (Row=target value, Col=predicted value)");
+					confusion.print();
+					System.out.println("\n");
+				}
 			}
 		}
 		else if (evalMethod.equals("random"))
 		{
-			for (int i = 0; i < 5; i++){
+
 			learner = getLearner(learnerName, rand);
 
 			System.out.println("Calculating accuracy on a random hold-out set...");
@@ -130,6 +138,11 @@ public class MLSystemManager {
 			Matrix trainLabels = new Matrix(data, 0, data.cols() - 1, trainSize, 1);
 			Matrix testFeatures = new Matrix(data, trainSize, 0, data.rows() - trainSize, data.cols() - 1);
 			Matrix testLabels = new Matrix(data, trainSize, data.cols() - 1, data.rows() - trainSize, 1);
+			for (int i = 1; i <=15; i=i+2) {
+
+				KNN k = (KNN)learner;
+				k.setK(i);
+				System.out.println("-------------------- K = " + k.getk()+ " --------------------");
 			double startTime = System.currentTimeMillis();
 			learner.train(trainFeatures, trainLabels);
 			double elapsedTime = System.currentTimeMillis() - startTime;
@@ -144,9 +157,6 @@ public class MLSystemManager {
 				confusion.print();
 				System.out.println("\n");
 			}
-			System.out.println("--------------------------------------");
-			System.out.println("--------------------------------------");
-			System.out.println("--------------------------------------");
 			System.out.println("--------------------------------------");
 
 			}

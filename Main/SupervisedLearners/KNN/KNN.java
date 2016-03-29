@@ -3,6 +3,7 @@ package Main.SupervisedLearners.KNN;
 import Main.Matrix;
 import Main.SupervisedLearners.SupervisedLearner;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.PriorityQueue;
 import java.util.HashMap;
 /**
@@ -12,13 +13,16 @@ public class KNN extends SupervisedLearner {
 
     private Matrix datafeatures;
     private Matrix datalabels;
+    boolean[] nominalFeatures;
     private boolean _weighting;
+    private boolean _regression;
+    private boolean _manhatten = true;
     private int _k;
 
-    public KNN(boolean weighting, int k)
+    public KNN(boolean weighting, boolean regression, int k)
     {
         _weighting = weighting;
-
+        _regression = regression;
 
 
         //we can't have a value of k less than 1.
@@ -33,20 +37,97 @@ public class KNN extends SupervisedLearner {
         //Nothing to do here, since we just worry about finding the nearest neighbors. Just store the values.
         datafeatures = features;
         datalabels = labels;
-    }
 
-    private double calculateDistance(double[] a, double[] b){
-        double dist = 0;
-        //sum squares for each feature;
-        for(int i = 0; i < a.length; i ++)
-        {
-            dist += Math.pow((b[i] - a[i]), 2);
+        nominalFeatures=  new boolean[features.row(0).length];
+
+        for (int i = 0; i < features.row(0).length; i++){
+            nominalFeatures[i] = (features.m_str_to_enum.get(i).size() > 0);
         }
 
-        //take the root of the sum squares;
+    }
 
+    private double calculateDistance(double[] a, double[] b, boolean[] nominal) {
+        double dist = 0;
+        int unknowns = 0;
+        if (_manhatten) {
+            for (int i = 0; i < a.length; i++) {
+                //if unknown, tag it and move on.
+                if (a[i] == Double.MAX_VALUE || b[i] == Double.MAX_VALUE){
+                    unknowns++;
+                    continue;
+                }
+                if(!nominal[i]) {
+                    //we need to check for unknown values
+                    dist += Math.abs((b[i] - a[i]));
+                }
+                else {
+                    //we need to check for unknown
+
+                    //if they're not equal, distance of 1, otherwise let it be.
+                    if (a != b){
+                        dist += 1;
+                    }
+                }
+            }
+
+            //For each unknown value, take the average distance of everything else and add it to the total distance.
+            //Basically we assume that the unknown items are about as far away - on average - as everything else.
+            //take the root of the sum squares;
+            if (unknowns != 0)
+            {
+                double avgDist = dist/(a.length-unknowns);
+                for (int i = 0; i < unknowns; i++)
+                {
+                    dist += avgDist;
+                }
+            }
+            dist = Math.sqrt(dist);
+
+            return dist;
+        }
+        //sum squares for each feature;
+        for (int i = 0; i < a.length; i++) {
+            //if unknown, tag it and move on.
+            if (a[i] == Double.MAX_VALUE || b[i] == Double.MAX_VALUE){
+                unknowns++;
+                continue;
+            }
+            if(!nominal[i]) {
+                //we need to check for unknown values
+                dist += Math.pow((b[i] - a[i]), 2);
+            }
+            else {
+                //we need to check for unknown
+
+                //if they're not equal, distance of 1, otherwise let it be.
+                if (a != b){
+                    dist += 1;
+                }
+            }
+        }
+
+        //For each unknown value, take the average distance of everything else and add it to the total distance.
+        //Basically we assume that the unknown items are about as far away - on average - as everything else.
+        //take the root of the sum squares;
+        if (unknowns != 0)
+        {
+            double avgSqrdDist = dist/(a.length-unknowns);
+            for (int i = 0; i < unknowns; i++)
+            {
+                dist += avgSqrdDist;
+            }
+        }
         dist = Math.sqrt(dist);
+
         return dist;
+    }
+
+    public void setK(int k)
+    {
+        this._k = k;
+    }
+    public int getk() {
+        return _k;
     }
 
 
@@ -63,7 +144,7 @@ public class KNN extends SupervisedLearner {
             if (features.length != row.length)
                 throw new Exception("The value for prediction and the training set need to have the same feature space");
 
-            double dist = calculateDistance(row, features);
+            double dist = calculateDistance(row, features, nominalFeatures);
 
             //check to see if this sum is closer than the current stored closest neighbors.
             if(queue.size() <_k){
@@ -80,38 +161,62 @@ public class KNN extends SupervisedLearner {
         double weight;
 
         //add up the number of each value
-        for(KNNPriQueue q : queue){
-            if (!_weighting)
-                 weight = 1;
-            else {
-                //If it matches exactly, it's gonna be the same.
-                if (q.weight == 0)
-                    weight = Double.MAX_VALUE;
-                //otherwise, weight it.
-                else
-                    weight = q.weight * (1.0 / Math.pow(q.weight, 2));
+        if (!_regression) {
+            for (KNNPriQueue q : queue) {
+                if (!_weighting)
+                    weight = 1;
+
+                else {
+                    //If it matches exactly, it's gonna be the same.
+                    if (q.weight == 0)
+                        weight = Double.MAX_VALUE;
+                        //otherwise, weight it.
+                    else
+                        weight = q.weight * (1.0 / Math.pow(q.weight, 2));
+                }
+                if (counters.containsKey(q.value)) {
+                    counters.put(q.value, counters.get(q.value) + weight);
+                } else {
+                    counters.put(q.value, weight);
+                }
             }
-            if (counters.containsKey(q.value)){
-                counters.put(q.value, counters.get(q.value) + weight);
+        }
+        //If it's regression we can just set labels as the mean of k nearest neighbors (with or without weighting
+        //and return.
+        else {
+            double sumTop = 0.0;
+            double sumBot = 0.0;
+            double value = 0.0;
+            if (_weighting) {
+                for (KNNPriQueue q : queue) {
+                    sumTop += (q.value * (1.0 / Math.pow(q.weight, 2)));
+                    sumBot += (1.0 / Math.pow(q.weight, 2));
+                }
+            } else{
+                for (KNNPriQueue q : queue) {
+                    sumTop += q.value;
+                    sumBot = sumBot + 1;
+                }
             }
-            else
-            {
-                counters.put(q.value, weight);
-            }
+
+            value = sumTop/sumBot;
+            labels[0] = value;
+            return;
         }
 
         double curWinnerValue = Double.MIN_VALUE;
         double curWinner = Integer.MIN_VALUE;
         //find the most common.
-        for (Double d : counters.keySet()){
+        for (Double d : counters.keySet()) {
             double challenger = counters.get(d);
 
-            if (challenger > curWinner){
+            if (challenger > curWinner) {
                 curWinner = challenger;
                 curWinnerValue = d;
             }
         }
 
         labels[0] = curWinnerValue;
+
     }
 }
