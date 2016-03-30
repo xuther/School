@@ -112,6 +112,11 @@ public class Cluster extends SupervisedLearner {
                     System.out.print(current.centroid[j] + ", ");
             }
             System.out.println("");
+            System.out.print("Instances: ");
+            for (int j = 0; j < current.instanceLocations.size(); j++)
+            {
+                System.out.print(current.instanceLocations.get(j) + ", ");
+            }
             System.out.println("");
 
             avgSillhouette += Sillhouette;

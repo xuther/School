@@ -24,7 +24,7 @@ public class MLSystemManager {
 		int[] netSize = {64,64,64,64,64,64,64,64,11};
 		if (model.equals("baseline")) return new BaselineLearner();
 		// else if (model.equals("perceptron")) return new Perceptron(rand);
-		else if (model.equals("cluster")) return new Cluster(4);
+		else if (model.equals("cluster")) return new Cluster(2);
 		else if (model.equals("mlp")) return new MLP(netSize);
 		else if (model.equals("dt")) return new DecisionTree();
 		else if (model.equals("knn")) return new KNN(true, 9);
