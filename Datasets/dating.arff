@@ -1,0 +1,217 @@
+@relation whatever
+
+@attribute Age Integer
+@attribute Weight Integer
+@attribute Apartment { 'Belmont' , 'Private' , 'Liberty Square' , 'The Crestwood' , 'Wymount Terrace' , 'Casa Dea' , 'Bountiful Court' , 'Centennial' , 'Moon Apartments' , 'The Village' , 'Riviera' , 'Slc' , 'Condo Row' , 'Raintree' , 'University Avenue Condos' , '?' , 'Riverside' , 'The Cottage' , 'The Enclave' , 'Millrace' , 'Monticello' , 'Raintree Commons' , 'Carriage Cove' , 'The Branbury' , 'Regency' , 'Sparks' , 'Old Mill' , 'The Crown Apartments' , 'UAC' , 'King Kenry' , 'Park Plaza' , 'Ecker Hill' , 'Woodland Heights' , 'Hampton Court' , 'Elmer Hill' , 'The Ridge' , 'Kensington' , 'Campus View South' , 'Campus Lane' , 'Victoria Place' , 'Academy Arms' , 'College Park' , 'Canyon Terrace' , 'Wolverine Crossing' , 'Devonshire' , 'Cox Apartments' , 'Brigham's Court' , 'Chambery Condos' , 'Cinnamon Tree' , 'Parrett' , 'Campus Plaza' , 'Spyglass' , 'Country Corner Condos' , 'Timpanogos Gateway' , 'The Elms' , 'Concord' , 'Wyview' , 'Windsor Arms' , 'Mountainwood' , 'Lanai' , 'Heleman Halls' , 'Cambridge Court' , 'Studio Apartment' , 'Glenwood' , 'South Downs' , 'Heritage' , 'Union Square' , 'Reynolds Condominiums' , 'Wyview Park' , 'The Brittany' , 'Stadium Terrace' , 'Windsor Park' , 'Heritage Halls' , 'Stratford Court' , 'University Ave. Condos' , 'Old Academy' , 'New Heritage' , 'TPM' , 'University Villa' , 'Westfall House' , 'Heather Cove' , 'The Colony' , 'Manavu' , 'Helaman Halls' , 'Lilac Place' , 'Canyon Meadows' , 'Garden Park' , 'The Avenues' , 'Crown Apartments'  } 
+@attribute Major { 'Accounting' , 'Biochemistry' , 'Business Managment' , 'Marketing' , 'Biology' , 'Communications' , 'French' , 'English' , 'Mechanical Engineering' , 'Family Life' , 'Behavioral Science' , 'Physchology' , 'Manufacturing Engineering' , 'Nursing' , 'Engineering' , 'Computer Science' , 'Genetics & Biotech' , 'Electrical Engineering' , 'Open Major' , 'Business' , 'NA' , 'Latin American Studies' , 'Studio Art' , 'Archaeology' , '?' , 'Supply Chain' , 'Information Systems' , 'Civil Engineering' , 'Economics' , 'Psychology' , 'Linguistics' , 'Family Life Studies' , 'History' , 'Special Education' , 'Humanities' , 'Elementary Education' , 'Culinary Arts' , 'Statistics' , 'Deaf Education' , 'English Teaching' , 'Public Health' , 'Exercise Science' , 'Family Studies' , 'Microbiology' , 'Sociology' , 'Media Arts' , 'International Relations' , 'Geospatial Intelligence' , 'Political Science' , 'Neuroscience' , 'Family Services' , 'Integrated Studies' , 'Public Relations' , 'Global Studies' , 'Criminal Justice' , 'Early Childhood Development' , 'Aerospace Engineering' , 'Geospatial intelligence' , 'Bioinformatics' , 'Bio-medical Engineering' , 'Finance' , 'Business Management' , 'Culinary' , 'Optometry' , 'ACME' , 'English Language' , 'Social Work' , 'Spanish' , 'News Media' , 'Dance Education' , 'Tourism' , 'MET' , 'Middle Eastern Studies' , 'Manufacturing Engineering Technology' , 'Physiological Biology' , 'Broadcast Journalism' , 'Sociocultural Anthropology' , 'Athletic Training' , 'European Studies' , 'Portuguese' , 'Geology' , 'Chemical Engineering' , 'Italian' , 'Dental Hygiene''Belmont' , 'Private' , 'Liberty Square' , 'The Crestwood' , 'Wymount Terrace' , 'Casa Dea' , 'Bountiful Court' , 'Centennial' , 'Moon Apartments' , 'The Village' , 'Riviera' , 'Slc' , 'Condo Row' , 'Raintree' , 'University Avenue Condos' , '?' , 'Riverside' , 'The Cottage' , 'The Enclave' , 'Millrace' , 'Monticello' , 'Raintree Commons' , 'Carriage Cove' , 'The Branbury' , 'Regency' , 'Sparks' , 'Old Mill' , 'The Crown Apartments' , 'UAC' , 'King Kenry' , 'Park Plaza' , 'Ecker Hill' , 'Woodland Heights' , 'Hampton Court' , 'Elmer Hill' , 'The Ridge' , 'Kensington' , 'Campus View South' , 'Campus Lane' , 'Victoria Place' , 'Academy Arms' , 'College Park' , 'Canyon Terrace' , 'Wolverine Crossing' , 'Devonshire' , 'Cox Apartments' , 'Brigham's Court' , 'Chambery Condos' , 'Cinnamon Tree' , 'Parrett' , 'Campus Plaza' , 'Spyglass' , 'Country Corner Condos' , 'Timpanogos Gateway' , 'The Elms' , 'Concord' , 'Wyview' , 'Windsor Arms' , 'Mountainwood' , 'Lanai' , 'Heleman Halls' , 'Cambridge Court' , 'Studio Apartment' , 'Glenwood' , 'South Downs' , 'Heritage' , 'Union Square' , 'Reynolds Condominiums' , 'Wyview Park' , 'The Brittany' , 'Stadium Terrace' , 'Windsor Park' , 'Heritage Halls' , 'Stratford Court' , 'University Ave. Condos' , 'Old Academy' , 'New Heritage' , 'TPM' , 'University Villa' , 'Westfall House' , 'Heather Cove' , 'The Colony' , 'Manavu' , 'Helaman Halls' , 'Lilac Place' , 'Canyon Meadows' , 'Garden Park' , 'The Avenues' , 'Crown Apartments' } 
+@attribute Gender { 'Male' , 'Female' } 
+@attribute Sports { 'Yes' , 'No' } 
+@attribute Exercise integer
+@attribute BrushTeeth integer
+@attribute LookingforLove integer
+@attribute InvolvedinChurchActivities integer
+@attribute Scriptures integer
+@attribute Temple integer
+@attribute Pray integer
+@attribute Tinder {' No' , 'Yes' , ? } 
+@attribute Eyes { 'Blue' ,'Hazel' , 'Brown' , 'Green' } 
+@attribute Hair {' Brown' , 'Black' , 'Blonde' , 'Red' , Other } 
+@attribute GPA real
+@attribute SIblings integer
+@attribute Relationship { 'No' , 'Yes' , '?' } 
+@class Married { 'No', 'Yes', '?' } 
+
+
+
+@data
+25 , 175 , Belmont , Accounting , Male , Yes , 4 , 1 , 9 , 6 , 1 , 1 , 1 , No , Blue , Brown , 3.6 , 3 , No , No 
+23 , 218 , Private , Biochemistry , Male , Yes , 1 , 2 , 5 , 3 , 2 , 1 , 5 , Yes , Hazel , Black , 2.25 , 3 , Yes , No 
+21 , 170 , Liberty Square , Business Managment , Male , Yes , 6 , 2 , 3 , 7 , 4 , 1 , 1 , Yes , Brown , Brown , 3.56 , 6 , No , No 
+23 , 225 , The Crestwood , Marketing , Male , Yes , 5 , 2 , 8 , 5 , 2 , 1 , 2 , Yes , Blue , Blonde , 3.8 , 4 , No , No 
+22 , 120 , Wymount Terrace , Biology , Female , No , 1 , 2 , 1 , 1 , 7 , 1 , 3 , No , Blue , Blonde , 3.35 , 4 , Yes , Yes 
+23 , 140 , Casa Dea , Communications , Male , No , 1 , 2 , 9 , 8 , 7 , 1 , 2 , No , Hazel , Brown , 3.6 , 4 , No , No 
+22 , 110 , Bountiful Court , French , Female , Yes , 1 , 3 , 5 , 5 , 7 , 1 , 5 , No , Green , Brown , 4 , 4 , No , No 
+22 , 220 , Centennial , English , Male , No , 1 , 3 , 1 , 1 , 1 , 1 , 1 , No , Blue , Blonde , 3.95 , 6 , Yes , No 
+24 , 200 , Private , Mechanical Engineering , Male , No , 2 , 2 , 1 , 1 , 5 , 1 , 3 , No , Blue , Brown , 3.75 , 3 , Yes , Yes 
+22 , 180 , Moon Apartments , Family Life , Female , No , 5 , 2 , 4 , 6 , 7 , 1 , 5 , No , Blue , Brown , 3.04 , 7 , No , No 
+22 , 125 , The Village , Accounting , Female , Yes , 6 , 2 , 1 , 8 , 7 , 2 , 5 , No , Blue , Blonde , 3.4 , 2 , No , No 
+23 , 140 , Riviera , Behavioral Science , Female , Yes , 4 , 3 , 1 , 1 , 6 , 0 , 2 , No , Blue , Blonde , 3.2 , 5 , Yes , No 
+23 , 180 , Slc , Physchology , Male , Yes , 4 , 1 , 3 , 2 , 2 , 0 , 1 , Yes , Brown , Red , 3 , 3 , No , No 
+24 , 205 , Condo Row , Manufacturing Engineering , Male , Yes , 6 , 2 , 4 , 8 , 0 , 0 , 1 , No , Hazel , Blonde , 3.6 , 2 , No , No 
+22 , 220 , Raintree , Accounting , Male , Yes , 3 , 2 , 10 , 4 , 7 , 1 , 3 , No , Blue , Blonde , 3 , 3 , Yes , No 
+23 , 175 , University Avenue Condos , Nursing , Male , Yes , 4 , 2 , 8 , 7 , 6 , 4 , 2 , No , Hazel , Brown , 3.6 , 5 , Yes , No 
+18 , 160 , The Village , Engineering , Male , Yes , 6 , 1 , 1 , 8 , 4 , 1 , 1 , No , Blue , Blonde , 3.7 , 3 , Yes , No 
+24 , 159 , Private , Computer Science , Male , Yes , 5 , 1 , 9 , 8 , 6 , 5 , 3 , No , Green , Red , 3.4 , 6 , Yes , No 
+23 , 125 , Private , Genetics & Biotech , Male , No , 2 , 2 , 1 , 3 , 5 , 2 , 4 , No , Blue , Brown , 3.3 , 3 , Yes , Yes 
+21 , 200 , ? , Electrical Engineering , Male , Yes , 5 , 2 , 6 , 8 , 6 , 2 , 3 , No , Green , Brown , 4 , 3 , No , No 
+20 , 175 , The Crestwood , Open Major , Female , Yes , 4 , 2 , 7 , 7 , 3 , 0 , 1 , Yes , Blue , Blonde , 4 , 2 , No , No 
+28 , ? , The Crestwood , Business , Male , Yes , 0 , 1 , 8 , 9 , 5 , 1 , 4 , Yes , Blue , Brown , 3 , 3 , No , No 
+24 , 110 , The Crestwood , NA , Female , No , 1 , 2 , 6 , 9 , 7 , 3 , 2 , No , Blue , Brown , 3.9 , 2 , No , No 
+24 , 110 , The Crestwood , NA , Female , No , 1 , 2 , 6 , 9 , 7 , 3 , 2 , No , Blue , Brown , 3.9 , 2 , No , No 
+21 , 105 , The Crestwood , Marketing , Female , No , 2 , 2 , 7 , 5 , 1 , 1 , 3 , No , Brown , Brown , 3.3 , 2 , No , No 
+24 , 175 , The Crestwood , Latin American Studies , Male , Yes , 4 , 1 , 6 , 3 , 0 , 0 , 1 , No , Blue , Other , 3.82 , 1 , No , No 
+23 , 117 , Riverside , NA , Female , No , 6 , 3 , 5 , 4 , 7 , 4 , 5 , No , Blue , Brown , NA , 9 , Yes , No 
+22 , 95 , The Cottage , Studio Art , Female , No , 3 , 2 , 2 , 7 , 7 , 4 , 3 , Yes , Hazel , Blonde , 3 , 4 , Yes , No 
+24 , 160 , Private , Archaeology , Female , Yes , 4 , 2 , 10 , 3 , 4 , 1 , 1 , No , Blue , Red , 3.5 , 4 , Yes , Yes 
+20 , 140 , The Crestwood , ? , Male , No , 3 , 2 , 7 , 2 , 0 , 0 , 1 , No , Green , Brown , ? , 5 , Yes , No 
+22 , 160 , Riviera , Supply Chain , Male , Yes , 6 , 2 , 8 , 5 , 1 , 1 , 1 , Yes , Brown , Brown , 3.6 , 3 , No , No 
+31 , 209 , ? , Latin American Studies , Male , No , 2 , 2 , 3 , 5 , 2 , 1 , 2 , Yes , Blue , Blonde , 3.45 , 2 , No , No 
+24 , 173 , The Enclave , Information Systems , Male , Yes , 3 , 2 , 4 , 8 , 4 , 2 , 4 , No , Green , Brown , 3.5 , 3 , Yes , No 
+25 , 175 , Millrace , Civil Engineering , Male , Yes , 0 , 2 , 8 , 7 , 3 , 1 , 2 , Yes , Blue , Blonde , 3.96 , 3 , No , No 
+21 , 155 , Liberty Square , Computer Science , Male , No , 6 , 1 , 7 , 7 , 3 , 2 , 3 , No , Blue , Brown , 3.35 , 3 , No , No 
+24 , 212 , The Village , Economics , Male , Yes , 7 , 3 , 10 , 1 , 0 , 10 , 5 , No , Blue , Other , 4 , 10 , Yes , No 
+24 , 135 , Monticello , Psychology , Female , No , 4 , 1 , 1 , 3 , 1 , 1 , 1 , No , Green , Brown , 3 , 6 , Yes , Yes 
+18 , 175 , Raintree Commons , Open Major , Female , No , 0 , 2 , 10 , 5 , 7 , 1 , 5 , No , Blue , Blonde , 1.6 , 10 , Yes , No 
+22 , 185 , Raintree Commons , Linguistics , Male , Yes , 3 , 3 , 9 , 5 , 5 , 3 , 4 , No , Brown , Brown , 3.5 , 3 , Yes , No 
+22 , 170 , Carriage Cove , Psychology , Male , No , 3 , 2 , 1 , 6 , 6 , 0 , 3 , No , Hazel , Brown , 2.92 , 2 , Yes , No 
+16 , 130 , ? , Open Major , Female , No , 6 , 3 , 3 , 7 , 7 , 3 , 1 , No , Blue , Blonde , 3.8 , 5 , No , No 
+24 , 185 , Private , Communications , Male , Yes , 4 , 1 , 4 , 6 , 5 , 0 , 2 , No , Blue , Brown , 3.7 , 4 , Yes , No 
+24 , 180 , Wymount Terrace , Business , Male , Yes , 2 , 1 , 1 , 3 , 0 , 0 , 0 , No , Blue , Blonde , 3.3 , 5 , Yes , Yes 
+22 , 125 , Private , Family Life Studies , Female , No , 3 , 2 , 1 , 3 , 4 , 1 , 5 , No , Blue , Blonde , 3.53 , 3 , Yes , Yes 
+21 , 130 , The Branbury , History , Female , No , 4 , 2 , 1 , 3 , 5 , 1 , 2 , No , Brown , Brown , 3 , 3 , Yes , No 
+22 , 220 , Regency , Special Education , Female , No , 3 , 2 , 10 , 5 , 3 , 3 , 3 , No , Green , Red , 3 , 3 , Yes , No 
+23 , 170 , ? , Electrical Engineering , Male , No , 4 , 2 , 1 , 3 , 0 , 0 , 1 , No , Blue , Blonde , 2.4 , 5 , Yes , Yes 
+23 , 185 , Sparks , Computer Science , Male , Yes , 2 , 2 , 10 , 10 , 4 , 2 , 3 , No , Blue , Brown , ? , 5 , Yes , No 
+23 , 180 , Private , Computer Science , Male , No , 0 , 1 , 5 , 5 , 6 , 0 , 5 , No , Brown , Black , 3.65 , 5 , No , No 
+22 , 185 , Old Mill , Humanities , Female , No , 3 , 2 , 3 , 2 , 7 , 2 , 4 , Yes , Green , Brown , 3.69 , 10 , No , No 
+20 , 135 , The Crown Apartments , Elementary Education , Female , No , 2 , 2 , 1 , 1 , 5 , 1 , 4 , No , Brown , Brown , 3.78 , 2 , Yes , No 
+20 , 120 , UAC , Mechanical Engineering , Female , Yes , 3 , 2 , 5 , 4 , 6 , 1 , 3 , No , Green , Blonde , 3.99 , 1 , No , No 
+20 , 150 , Moon Apartments , Psychology , Female , No , 5 , 1 , 5 , 2 , 2 , 0 , 3 , Yes , Brown , Brown , 3.3 , 2 , Yes , No 
+23 , 128 , Private , Studio Art , Female , No , 6 , 2 , 1 , 4 , 2 , 0 , 1 , No , Green , Red , 2.9 , 4 , Yes , Yes 
+22 , 175 , King Kenry , Computer Science , Male , No , 0 , 1 , 2 , 7 , 0 , 0 , 1 , No , Blue , Brown , 3.1 , 5 , No , No 
+20 , 175 , Private , Computer Science , Male , No , 2 , 2 , 2 , 5 , 2 , 0 , 1 , No , Blue , Blonde , 3.5 , 2 , No , No 
+25 , 210 , The Crestwood , Culinary Arts , Male , No , 0 , 2 , 10 , 1 , 1 , 0 , 2 , No , Brown , Brown , 2.97 , 5 , No , No 
+24 , 160 , Private , Statistics , Male , Yes , 6 , 2 , 3 , 5 , 4 , 0 , 1 , No , Brown , Brown , 3.73 , 4 , No , No 
+21 , 140 , Park Plaza , Mechanical Engineering , Male , Yes , 2 , 2 , 1 , 5 , 7 , 4 , 4 , No , Brown , Brown , 3.93 , 5 , Yes , No 
+24 , 155 , Ecker Hill , Psychology , Male , Yes , 6 , 2 , 7 , 5 , 3 , 1 , 3 , No , Hazel , Brown , 3.4 , 8 , Yes , No 
+21 , 150 , Private , Deaf Education , Female , Yes , 3 , 2 , 1 , 1 , 0 , 1 , 1 , No , Brown , Brown , 3.2 , 3 , Yes , Yes 
+21 , 150 , Private , English Teaching , Female , No , 5 , 4 , 5 , 3 , 1 , 0 , 2 , No , Green , Blonde , 3.1 , 7 , No , No 
+23 , 115 , ? , Public Health , Female , Yes , 3 , 1 , 1 , 6 , 7 , 1 , 3 , No , Green , Brown , 3.8 , 6 , Yes , Yes 
+23 , 208 , Woodland Heights , Exercise Science , Male , Yes , 6 , 2 , 6 , 9 , 2 , 6 , 2 , Yes , Blue , Brown , 3.2 , 3 , No , No 
+23 , 140 , Riviera , Family Studies , Female , No , 4 , 3 , 2 , 1 , 6 , 0 , 2 , No , Green , Blonde , 3.33 , 5 , Yes , No 
+19 , 113 , Private , Nursing , Female , No , 3 , 2 , 7 , 9 , 7 , 4 , 5 , No , Hazel , Other , 3.5 , 3 , No , No 
+21 , 105 , Hampton Court , Public Health , Female , No , 0 , 2 , 10 , 2 , 5 , 1 , 1 , No , Brown , Brown , 3.1 , 3 , Yes , No 
+26 , 160 , Private , Nursing , Female , Yes , 4 , 2 , 1 , 3 , 1 , 0 , 2 , No , Green , Brown , 3.8 , 2 , Yes , Yes 
+23 , 155 , Elmer Hill , Microbiology , Male , Yes , 3 , 2 , 5 , 3 , 4 , 1 , 3 , No , Blue , Brown , 3.3 , 2 , Yes , No 
+28 , 175 , The Ridge , Sociology , Male , Yes , 5 , 1 , 1 , 3 , 7 , 0 , 2 , No , Hazel , Blonde , 3.05 , 2 , Yes , Yes 
+23 , 210 , Private , Media Arts , Male , No , 4 , 1 , 6 , 4 , 1 , 0 , 1 , No , Blue , Brown , 3.4 , 6 , No , No 
+26 , 152 , ? , Business , Male , No , 0 , 2 , 6 , 3 , 3 , 1 , 1 , No , Hazel , Blonde , 3.4 , 5 , No , No 
+21 , 155 , Private , International Relations , Male , Yes , 7 , 2 , 5 , 5 , 7 , 4 , 2 , No , Blue , Brown , 2.7 , 4 , Yes , No 
+23 , 156 , Kensington , Geospatial Intelligence , Male , Yes , 3 , 2 , 1 , 7 , 3 , 1 , 2 , No , Blue , Brown , 2.7 , 5 , Yes , No 
+24 , 270 , Private , Political Science , Male , Yes , 2 , 2 , 1 , 3 , 7 , 1 , ? , No , Blue , Brown , 3.46 , 5 , Yes , Yes 
+21 , 140 , ? , Nursing , Female , No , 2 , 2 , 1 , 3 , 2 , 0 , 2 , Yes , Blue , Brown , 3.9 , 5 , ? , No 
+18 , 130 , Private , Psychology , Female , Yes , 6 , 2 , 5 , 3 , 7 , 4 , 2 , Yes , Hazel , Blonde , 3.5 , 3 , Yes , No 
+21 , 120 , Campus View South , Neuroscience , Female , Yes , 3 , 1 , 1 , 3 , 3 , 1 , 1 , No , Green , Brown , 3.6 , 2 , Yes , No 
+20 , 123 , Campus Lane , Family Services , Female , Yes , 3 , 3 , 7 ,  , 7 , 4 , 4 , No , Blue , Blonde , 3.4 , 4 , Yes , No 
+21 , 165 , Victoria Place , Special Education , Female , No , 4 , 2 , 5 , 5 , 5 , 4 , 2 , No , Green , Brown , 3.6 , 10 , No , No 
+20 , 185 , Academy Arms , Computer Science , Male , No , 2 , 1 , 6 , 8 , 7 , 4 , 5 , No , Blue , Blonde , 3.5 , 1 , No , No 
+21 , 150 , Private , Elementary Education , Female , No , 1 , 1 , 1 , 1 , 0 , 0 , 0 , No , Blue , Brown , 3.68 , 3 , Yes , Yes 
+24 , 190 , Private , Public Health , Male , Yes , 7 , 2 , 1 , 1 , 7 , 1 , 2 , Yes , Green , Brown , 3.7 , 2 , No , No 
+23 , 145 , College Park , Nursing , Female , Yes , 4 , 2 , 1 , 2 , 1 , 1 , 1 , No , Brown , Brown , 3.87 , 3 , Yes , Yes 
+24 , 170 , ? , Marketing , Male , Yes , 6 , 5 , 2 , 1 , 0 , 0 , 1 , Yes , Blue , Brown , 3 , 5 , No , No 
+21 , 145 , Canyon Terrace , Biology , Female , Yes , 1 , 3 , 7 , 7 , 4 , 1 , 2 , No , Blue , Blonde , 3.2 , 3 , Yes , No 
+24 , 200 , Private , Integrated Studies , Male , Yes , 3 , 2 , 1 , 2 , 0 , 1 , 3 , No , Blue , Brown , 3.38 , 3 , Yes , Yes 
+18 , 185 , Wolverine Crossing , ? , Male , Yes , 4 , 3 , 1 , 2 , 0 , 0 , 0 , Yes , Blue , Blonde , 1.8 , 1 , Yes , No 
+23 , 120 , Private , Public Health , Female , Yes , 3 , 3 , 1 , 4 , 3 , 1 , 3 , No , Brown , Brown , 3.6 , 4 , Yes , Yes 
+23 , 155 , Devonshire , Public Relations , Male , Yes , 5 , 2 , 9 , 8 , 7 , 2 , 5 , No , Blue , Blonde , 3.66 , 4 , No , No 
+21 , 244 , Cox Apartments , Psychology , Female , Yes , 6 , 1 , 6 , 4 , 6 , 0 , 3 , No , Hazel , Brown , 3.2 , 3 , No , No 
+23 , 163 , University Avenue Condos , Computer Science , Male , No , 3 , 2 , 5 , 9 , 7 , 4 , 2 , Yes , Blue , Red , 3.97 , 4 , No , No 
+25 , 240 , Private , Economics , Male , No , 2 , 2 , 1 , 5 , 2 , 1 , 1 , No , Green , Brown , 3.5 , 5 , Yes , Yes 
+23 , 173 , Private , Global Studies , Female , No , 1 , 1 , 10 , 2 , ? , ? , ? , Yes , Brown , Brown , 3.3 , 5 , Yes , No 
+24 , 210 , Brigham's Court , Psychology , Male , No , 0 , 1 , 1 , 1 , 0 , 0 , 0 , No , Blue , Brown , 2.7 , 3 , Yes , Yes 
+20 , 135 , Chambery Condos , Criminal Justice , Female , Yes , 2 , 1 , 1 , 5 , 1 , 0 , 1 , No , Green , Brown , 3.9 , 4 , Yes , No 
+21 , 145 , Cinnamon Tree , Statistics , Male , Yes , 2 , 1 , 4 , 1 , 0 , 0 , 0 , Yes , Green , Brown , 3.7 , 4 , Yes , No 
+22 , ? , Cox Apartments , Early Childhood Development , Female , No , ? , 2 , 9 , 8 , 7 , 1 , 5 , No , Blue , Brown , ? , 2 , No , No 
+24 , 175 , Private , Aerospace Engineering , Male , No , 3 , 2 , 1 , 8 , 4 , 0 , 0 , No , Blue , Brown , 3.24 , 6 , Yes , Yes 
+24 , 199 , Parrett , Public Health , Female , Yes , 4 , 2 , 1 , 3 , 3 , 1 , 2 , No , Green , Blonde , 3.3 , 4 , Yes , Yes 
+19 , 129 , Campus Plaza , Linguistics , Female , No , 4 , 2 , 3 , 3 , 7 , 1 , 2 , No , Hazel , Brown , 3.7 , 3 , No , No 
+23 , 150 , Moon Apartments , Geospatial intelligence , Male , Yes , 6 , 2 , 5 , 6 , 7 , 1 , 5 , Yes , Blue , Blonde , 3.92 , 3 , No , No 
+26 , 165 , Private , Nursing , Male , Yes , 2 , 2 , 1 , 8 , 2 , 0 , 2 , No , Hazel , Brown , 3.6 , 10 , Yes , Yes 
+21 , 150 , Private , Deaf Education , Female , Yes , 3 , 2 , 1 , 1 , 0 , 1 , 1 , No , Brown , Brown , 3.2 , 3 , Yes , Yes 
+24 , 170 , Private , Sociology , Male , Yes , 4 , 2 , 1 , 7 , 1 , 1 , 1 , No , Green , Blonde , 3 , 3 , Yes , Yes 
+21 , 125 , UAC , Business , Female , No , 5 , 2 , 1 , 2 , 0 , 0 , 0 , No , Blue , Blonde , 3.98 , 2 , No , No 
+23 , 149 , Spyglass , Bioinformatics , Male , Yes , 5 , 2 , 10 , 9 , 6 , 4 , 5 , No , Green , Red , 3.4 , 6 , Yes , No 
+21 , 130 , Private , Bio-medical Engineering , Female , No , 2 , 2 , 1 , 7 , 7 , 5 , 5 , No , Hazel , Blonde , 3.4 , 6 , Yes , No 
+24 , 174 , Country Corner Condos , Finance , Male , No , 3 , 2 , 1 , 2 , 0 , 0 , 2 , No , Hazel , Brown , 3.93 , 2 , Yes , Yes 
+22 , 200 , Belmont , Business Management , Male , Yes , 6 , 1 , 7 , 1 , 2 , 1 , 2 , Yes , Hazel , Blonde , 3.5 , 3 , Yes , No 
+22 , 117 , ? , Nursing , Female , No , 6 , 2 , 10 , 8 , 0 , 0 , 1 , No , Blue , Blonde , 3.7 , 3 , Yes , Yes 
+22 , 130 , Monticello , Neuroscience , Female , No , 3 , 2 , 6 , 7 , 5 , 4 , 2 , No , Brown , Brown , 3.97 , 2 , No , No 
+23 , 196.8 , The Village , Finance , Male , Yes , 4 , 2 , 8 , 8 , 4 , 2 , 4 , No , Brown , Brown , 3.4 , 4 , Yes , No 
+22 , ? , Cox Apartments , Early Childhood Development , Female , No , 5 , 2 , 8 , 10 , 7 , 1 , 2 , No , Blue , Brown , ? , 3 , Yes , No 
+23 , 125 , Timpanogos Gateway , Exercise Science , Male , Yes , 3 , 2 , 4 , 1 , 0 , 0 , 1 , No , Blue , Brown , 3.75 , 2 , Yes , No 
+24 , 132 , Carriage Cove , Political Science , Male , No , 2 , 2 , 4 , 7 , 7 , 1 , 4 , No , Blue , Blonde , 3.99 , 1 , No , No 
+23 , 210 , The Elms , Exercise Science , Male , Yes , 5 , 3 , 7 , 4 , 6 , 1 , 5 , No , Hazel , Black , 3.5 , 3 , Yes , No 
+23 , 147 , Concord , Culinary , Female , No , 0 , 1 , 1 , 1 , 0 , 0 , 0 , No , Hazel , Brown , 2.57 , 10 , Yes , Yes 
+22 , 170 , Wyview , Computer Science , Male , Yes , 3 , 1 , 4 , 4 , 3 , 1 , 1 , No , Hazel , Brown , 1.8 , 4 , No , No 
+23 , 210 , ? , Computer Science , Male , Yes , 6 , 2 , 7 , 1 , 1 , 0 , 0 , Yes , Brown , Black , ? , 3 , No , No 
+20 , 125 , Belmont , Family Life , Female , Yes , 4 , 3 , 7 , 4 , 7 , 2 , 3 , No , Blue , Blonde , 3.25 , 3 , Yes , No 
+21 , 165 , ? , Optometry , Female , No , 3 , 2 , 1 , 2 , 7 , 1 , 4 , No , Blue , Blonde , 3 , 4 , Yes , Yes 
+23 , 175 , University Avenue Condos , ACME , Male , No , 3 , 2 , 4 , 4 , 7 , 0 , 2 , No , Hazel , Brown , 3.5 , 4 , No , No 
+26 , 205 , Windsor Arms , Economics , Male , No , 7 , 2 , 6 , 7 , 7 , 0 , 3 , No , Blue , Brown , 3.99 , 4 , No , No 
+21 , 128 , University Avenue Condos , Elementary Education , Female , Yes , 3 , 2 , 7 , 5 , 4 , 2 , 4 , No , Blue , Blonde , 3.5 , 3 , Yes , No 
+25 , 118 , Sparks , English Language , Female , No , 3 , 2 , 1 , 10 , 3 , 2 , 2 , No , Brown , Brown , ? , 3 , No , No 
+25 , 154 , Mountainwood , Social Work , Female , Yes , 4 , 3 , 8 , 10 , 7 , 5 , 4 , No , Green , Blonde , 3.4 , 3 , Yes , No 
+24 , 183 , ? , Exercise Science , Male , Yes , 5 , 2 , 1 , 2 , 4 , 1 , 2 , No , Hazel , Brown , 3 , 2 , Yes , Yes 
+21 , 135 , Private , Elementary Education , Female , Yes , 0 , 3 , 7 , 10 , 7 , 2 , 5 , No , Blue , Blonde , 3.82 , 3 , No , No 
+59 , 135 , Private , NA , Female , No , 5 , 2 , 1 , 9 , 5 , 4 , 5 , No , Blue , Brown , NA , 7 , Yes , Yes 
+20 , 148 , Private , Social Work , Female , Yes , 2 , 3 , 5 , 5 , 7 , 0 , 2 , No , Blue , Blonde , 3.75 , 9 , No , No 
+22 , 165 , Condo Row , Mechanical Engineering , Male , Yes , 3 , 2 , 7 , 10 , 3 , 1 , 2 , No , Hazel , Brown , 3.5 , 6 , Yes , No 
+22 , 118 , Lanai , Spanish , Female , No , 5 , 3 , 1 , 1 , 0 , 0 , 1 , No , Blue , Blonde , 2.73 , 3 , No , No 
+19 , 125 , Heleman Halls , Nursing , Female , Yes , 2 , 2 , 1 , 8 , 6 , 1 , 2 , No , Blue , Blonde , 3.79 , 6 , No , No 
+20 , 110 , The Village , News Media , Female , No , 3 , 2 , 5 , 4 , 3 , 0 , 2 , No , Green , Blonde , 3.5 , 2 , No , No 
+21 , 112 , Wymount Terrace , Dance Education , Female , Yes , 5 , 2 , 1 , 2 , 4 , 1 , 2 , No , Hazel , Brown , 3.5 , 3 , Yes , Yes 
+26 , 200 , Cambridge Court , Spanish , Male , Yes , 2 , 1 , 1 , 8 , 2 , 1 , 3 , No , Blue , Blonde , ? , 5 , Yes , Yes 
+19 , 117 , Studio Apartment , Tourism , Female , Yes , 5 , 2 , 5 , 8 , 7 , 0 , 2 , No , Brown , Brown , 4 , 0 , No , No 
+24 , 290 , Wyview , Electrical Engineering , Male , Yes , 2 , 2 , 10 , 7 , 6 , 1 , 4 , No , Blue , Brown , 3.3 , 4 , Yes , Yes 
+19 , 100 , Centennial , Public Health , Female , No , 2 , 2 , 4 , 2 , 1 , 3 , 5 , No , Brown , Brown , 3.2 , 9 , No , No 
+22 , 230 , Glenwood , MET , Male , Yes , 3 , 2 , 6 , 3 , 7 , 2 , 2 , No , Brown , Brown , 3.97 , 4 , No , No 
+22 , 150 , South Downs , Middle Eastern Studies , Female , Yes , 5 , 2 , 3 , 3 , 4 , 1 , 2 , No , Brown , Brown , 3.91 , 4 , No , No 
+23 , 150 , Wymount Terrace , Business Management , Male , Yes , 1 , 2 , 1 , 8 , 7 , 2 , 2 , No , Brown , Red , 3.77 , 3 , Yes , Yes 
+18 , 130 , Heritage , Open Major , Male , No , 1 , 2 , 2 , 4 , 3 , 0 , 3 , No , Blue , Blonde , 3.9 , 2 , No , No 
+21 , 160 , Raintree , Sociology , Female , Yes , 3 , 2 , 6 , 9 , 7 , 4 , 5 , No , Brown , Brown , 3.5 , 1 , No , No 
+24 , 175 , Union Square , Manufacturing Engineering Technology , Male , Yes , 5 , 2 , 1 , 6 , 4 , 1 , 3 , No , Green , Brown , 3.61 , 1 , Yes , Yes 
+24 , 190 , Private , Neuroscience , Male , No , 2 , 1 , 1 , 4 , 6 , 1 , 1 , No , Blue , Blonde , 3.3 , 2 , Yes , Yes 
+23 , 159 , Private , Physiological Biology , Male , Yes , 2 , 2 , 1 , 6 , 3 , 0 , 2 , No , Blue , Brown , 3 , 3 , Yes , Yes 
+22 , 165 , Park Plaza , Business Management , Male , No , 1 , 2 , 4 , 1 , 7 , 0 , 5 , No , Brown , Black , 3.5 , 3 , No , No 
+43 , ? , Private , English Teaching , Female , No , 5 , 2 , 1 , 8 , 5 , 1 , 3 , No , Blue , Brown , 3.7 , 7 , Yes , Yes 
+19 , 115 , Reynolds Condominiums , Broadcast Journalism , Female , Yes , 6 , 3 , 1 , 7 , 7 , 4 , 4 , No , Hazel , Brown , 3.67 , 2 , Yes , No 
+27 , 280 , Wyview Park , Sociology , Male , Yes , 5 , 1 , 1 , 1 , 1 , 1 , 5 , No , Blue , Blonde , 3.64 , 3 , Yes , Yes 
+21 , 120 , Private , Sociocultural Anthropology , Female , No , 0 , 2 , 3 , 5 , 1 , 0 , 3 , No , Brown , Brown , 3.88 , 5 , No , No 
+23 , 200 , Private , Information Systems , Male , Yes , 5 , 2 , 6 , 5 , 5 , 0 , 1 , No , Blue , Blonde , 3.8 , 3 , No , No 
+21 , 165 , The Brittany , Open Major , Male , Yes , 3 , 1 , 6 , 5 , 3 , 4 , 3 , No , Blue , Brown , 3.75 , 5 , No , No 
+24 , 165 , Stadium Terrace , Biochemistry , Male , Yes , 4 , 3 , 8 , 10 , 7 , 3 , 5 , No , Brown , Brown , 3.3 , 10 , No , No 
+22 , 154 , Windsor Park , Public Health , Female , No , 0 , 2 , 10 , 6 , 5 , 3 , 4 , No , Brown , Brown , 3.72 , 1 , Yes , No 
+21 , 105 , The Village , Neuroscience , Female , Yes , 4 , 1 , 7 , 9 , 3 , 1 , 3 , No , Green , Blonde , 3.7 , 0 , Yes , No 
+19 , 140 , The Village , Athletic Training , Female , Yes , 4 , 2 , 5 , 7 , 7 , 2 , 3 , No , Blue , Brown , 2.5 , 4 , Yes , Yes 
+18 , 175 , Heritage Halls , European Studies , Female , No , 3 , 2 , 6 , 7 , 3 , 1 , 2 , No , Green , Brown , 3.6 , 2 , Yes , No 
+21 , 145 , Stratford Court , Family Life , Female , Yes , 4 , 2 , 8 , 9 , 5 , 2 , 4 , No , Blue , Blonde , 3.5 , 2 , No , No 
+24 , 160 , University Ave. Condos , Portuguese , Male , Yes , 6 , 3 , 1 , 5 , 7 , 4 , 3 , No , Brown , Brown , 3.6 , 3 , Yes , No 
+22 , 180 , Old Academy , Linguistics , Male , No , 4 , 3 , 6 , 6 , 7 , 2 , 4 , No , Hazel , Blonde , 3.9 , 4 , Yes , No 
+20 , 150 , Private , Linguistics , Male , Yes , 4 , 1 , 7 , 6 , 2 , 3 , 2 , No , Blue , Blonde , 3.8 , 4 , No , No 
+22 , 145 , Heritage Halls , Computer Science , Male , Yes , 7 , 2 , 8 , 5 , 5 , 1 , 2 , No , Blue , Blonde , 3.3 , 6 , Yes , No 
+? , 150 , The Village , Geology , Female , Yes , 6 , 3 , 6 , 4 , 1 , 0 , 1 , No , Blue , Red , 3.25 , 3 , No , No 
+18 , 185 , New Heritage , Open Major , Female , No , 1 , 2 , 2 , 3 , 3 , 1 , 4 , No , Brown , Brown , 3.4 , 6 , No , No 
+21 , 150 , Private , Electrical Engineering , Male , No , 2 , 1 , 3 , 4 , 5 , 0 , 2 , No , Green , Brown , 2.8 , 8 , No , No 
+21 , 151 , Glenwood , Computer Science , Male , No , 5 , 2 , 1 , 1 , 5 , 3 , 2 , No , Brown , Brown , 3 , 6 , Yes , No 
+22 , 200 , TPM , Finance , Male , Yes , 3 , 2 , 10 , 3 , 5 , 2 , ? , No , Blue , Brown , 3.5 , 6 , Yes , Yes 
+22 , 185 , Private , Marketing , Male , Yes , 4 , 2 , 7 , 7 , 6 , 2 , 2 , No , Hazel , Brown , 3.7 , 6 , No , No 
+23 , 140 , Wyview , Public Relations , Male , Yes , 2 , 2 , 6 , 9 , 6 , 5 , 3 , No , Brown , Brown , 3.72 , 4 , No , No 
+22 , 115 , Mountainwood , Nursing , Female , Yes , 6 , 2 , 7 , 7 , 7 , 4 , 3 , No , Brown , Blonde , 3.82 , 9 , No , No 
+24 , 130 , Union Square , Family Studies , Female , No , 6 , 2 , 1 , 7 , 7 , 2 , 2 , No , Green , Brown , 3.13 , 4 , Yes , Yes 
+27 , 220 , Private , Business , Male , Yes , 5 , 2 , 1 , 5 , 7 , 2 , 5 , No , Brown , Black , 3.7 , 6 , Yes , Yes 
+22 , 170 , University Villa , Public Health , Male , Yes , 2 , 2 , 10 , 8 , 4 , 1 , 4 , No , Hazel , Blonde , 3.96 , 3 , Yes , No 
+21 , 196 , Westfall House , Exercise Science , Male , Yes , 5 , 3 , 3 , 7 , 5 , 1 , 2 , Yes , Blue , Brown , 3.5 , 7 , No , No 
+23 , 125 , Cinnamon Tree , ? , Male , Yes , 3 , 2 , 1 , 3 , 5 , 0 , 2 , No , Green , Brown , 3.81 , 4 , Yes , No 
+23 , 190 , Heather Cove , Public Health , Female , No , 1 , 2 , 1 , 3 , 4 , 1 , 2 , No , Blue , Brown , 3.4 , 3 , Yes , No 
+24 , 285 , Private , Political Science , Male , No , 1 , 1 , 1 , 1 , 7 , 1 , 3 , No , Hazel , Brown , 3 , 5 , Yes , Yes 
+25 , 180 , The Colony , Chemical Engineering , Male , Yes , 0 , 2 , 3 , 6 , 4 , 0 , 5 , ? , Brown , Black , 3.55 , 1 , No , No 
+22 , 125 , Private , Italian , Female , Yes , 5 , 2 , 1 , 5 , 7 , 4 , 4 , No , Blue , Brown , 3.97 , 4 , Yes , Yes 
+19 , 127 , Heritage Halls , Public Relations , Female , No , 2 , 2 , 2 , 6 , 3 , 2 , 1 , No , Green , Brown , 4 , 3 , No , No 
+22 , 153 , Manavu , Computer Science , Male , Yes , 1 , 2 , 1 , 2 , 7 , 1 , 2 , No , Brown , Brown , 3.99 , 4 , Yes , No 
+24 , 140 , University Villa , Computer Science , Male , No , 5 , 2 , 3 , 3 , 2 , 1 , 2 , No , Green , Brown , 3.99 , 3 , No , No 
+19 , 130 , Helaman Halls , Open Major , Female , Yes , 3 , 4 , 1 , 7 , 7 , 4 , 4 , No , Brown , Brown , 4 , 3 , Yes , No 
+20 , 95 , Lilac Place , Linguistics , Female , No , 3 , 2 , 1 , 3 , 0 , 0 , 1 , No , Brown , Brown , 2.5 , 3 , Yes , Yes 
+28 , 220 , Canyon Meadows , Open Major , Female , No , 4 , 2 , 8 , 9 , 3 , 2 , 2 , No , Blue , Blonde , NA , 6 , No , No 
+26 , 150 , Garden Park , Dental Hygiene , Female , Yes , 3 , 2 , 6 , 6 , 7 , 2 , 2 , No , Brown , Brown ,  , 3 , No , No 
+23 , 205 , The Avenues , History , Male , No , 6 , 2 , 7 , 9 , 7 , 3 , 4 , No , Green , Brown , 3.28 , 3 , No , No 
+20 , 128 , Crown Apartments , History , Female , Yes , 3 , 2 , 1 , 3 , 5 , 1 , 2 , No , Blue , Brown , 3.67 , 7 , Yes , No 
